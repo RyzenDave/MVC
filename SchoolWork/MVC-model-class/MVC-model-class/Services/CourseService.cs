@@ -8,7 +8,7 @@ namespace MVC_model_class.Services
     {
             public List<CourseDto> GetAllCourses()
         {
-            return InMemoryDb.Courses?.Select(course => new CourseDto
+            return InMemoryDb.Courses.Select(course => new CourseDto
             {
                 Name = course.Name
             }).ToList() ?? new List<CourseDto>();

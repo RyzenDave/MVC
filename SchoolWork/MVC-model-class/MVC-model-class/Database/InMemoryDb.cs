@@ -4,8 +4,14 @@ namespace MVC_model_class.Database
 {
     public class InMemoryDb
     {
-        public static List<Student> Students {  get; set; }
+        public static List<Student> Students { get; set; }
         public static List<Course> Courses { get; set; }
+
+        static InMemoryDb()
+        {
+            LoadCourses();
+            LoadStudents();
+        }
 
         private static void LoadStudents()
         {
@@ -37,28 +43,29 @@ namespace MVC_model_class.Database
                 }
             };
         }
-            private static void LoadCourses()
+
+        private static void LoadCourses()
         {
             Courses = new List<Course>()
-    {
-        new Course()
-        {
-            Id = 1,
-            Name = "Introduction to Programming",
-            NumOfClasses = 20
-        },
-        new Course()
-        {
-            Id = 2,
-            Name = "Web Development Fundamentals",
-            NumOfClasses = 15
-        },
-        new Course()
-        {
-            Id = 3,
-            Name = "Database Design",
-            NumOfClasses = 12
-        }
+            {
+                new Course()
+                {
+                    Id = 1,
+                    Name = "Introduction to Programming",
+                    NumOfClasses = 20
+                },
+                new Course()
+                {
+                    Id = 2,
+                    Name = "Web Development Fundamentals",
+                    NumOfClasses = 15
+                },
+                new Course()
+                {
+                    Id = 3,
+                    Name = "Database Design",
+                    NumOfClasses = 12
+                }
             };
         }
     }
