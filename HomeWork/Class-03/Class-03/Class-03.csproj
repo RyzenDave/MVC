@@ -7,4 +7,8 @@
     <RootNamespace>Class_03</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="DataBase\" />
+  </ItemGroup>
+
 </Project>

@@ -27,12 +27,12 @@ namespace MVC_model_class.Services
             return studentWithCourse;
         }
         public List<ListAllStudentsDto> 
-            GetAllStudents()
-        {
-            return InMemoryDb.Students.Select(student => new ListAllStudentsDto
+                GetAllStudents()
             {
-                FullName = $"{student.FirstName} {student.FirstName}"
-            });
-        }
+                return InMemoryDb.Students.Select(student => new ListAllStudentsDto
+                {
+                    FullName = $"{student.FirstName?.Trim()} {student.LastName?.Trim()}".Trim()
+                }).ToList();
+            }
     } 
 }

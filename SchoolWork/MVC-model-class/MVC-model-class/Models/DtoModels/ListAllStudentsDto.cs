@@ -2,6 +2,6 @@
 {
     public class ListAllStudentsDto
     {
-        public string Fullname { get; set; }
+        public string FullName { get; set; }
     }
 }
