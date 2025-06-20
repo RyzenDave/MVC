@@ -1,0 +1,9 @@
+﻿@model IEnumerable<CourseDto>
+
+@{
+    string allCourses = "All Courses";
+}
+
+<h2>@allCourses</h2>
+
+@Html.Partial("_PartialCourseView", Model)
