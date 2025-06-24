@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Class04.Controllers
 {
-    [Route("[Controller]")]
+     
     public class StudentController : Controller
     {
         private readonly StudentService _studentService;
@@ -23,7 +23,7 @@ namespace Class04.Controllers
             return View(students);
         }
 
-        [HttpGet("{id}")]
+        //[HttpGet("{id}")]
         public IActionResult GetStudentById(int id) 
         {
             StudentWithCourseDto student = _studentService.GetStudentById(id);
@@ -41,6 +41,7 @@ namespace Class04.Controllers
         {
             return View();
         }
+
 
         [HttpPost("createStudent")]
         public IActionResult CreateStudent(CreateStudentVM createStudentVM) 
