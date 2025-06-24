@@ -1,8 +1,0 @@
-﻿@using Class_04_View.Models.DtoModel
-@model IEnumerable<StudentWithCourseDto>
-
-    @{
-        string studentTitleHeader = "AllStudents";
-}
-    <h2>@studentTitleHeader</h2>
-    @Html.Partial("_PartialStudentView", Model)
