@@ -1,0 +1,31 @@
+﻿@model List<StudentDto>
+
+<h1>Students</h1>
+<hr />
+<div class="container">
+    <div class="row">
+        <a class="btn btn-primary mb-2" asp-action="Create">Create New</a>
+    </div>
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Age</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model)
+                {
+                    <tr>
+                        <td>@student.FullName</td>
+                        <td>@student.Age</td>
+                        <td>
+                            <a asp-action ="Details">Details</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
