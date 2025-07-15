@@ -1,5 +1,5 @@
+using Microsoft.EntityFrameworkCore;
 namespace VideoRentalOnlineStore.app;
-using VideoRentalOnlineStore
 {
     public class Program
     {
@@ -10,12 +10,12 @@ using VideoRentalOnlineStore
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            // Add DbContext with SQL Server (replace connection string)
-            var connString = builder.Configuration.GetConnectionString("AcademyDbConnString");
-            builder.Services.AddDbContext<AcademyDbContext>(options =>
-                options.UseSqlServer(connString));
+            builder.Services.AddDbContext<TodoDbContext>(options =>
+            {
+            options.UseSqlServer(builder.Configuration.GetConnectionString("VROSConnString"));
+            });
 
-            var app = builder.Build();
+        var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
