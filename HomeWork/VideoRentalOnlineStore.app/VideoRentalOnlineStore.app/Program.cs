@@ -1,6 +1,5 @@
-using Microsoft.EntityFrameworkCore;
-namespace VideoRentalOnlineStore.app;
-{
+     namespace VideoRentalOnlineStore.app;
+    
     public class Program
     {
         public static void Main(string[] args)
@@ -10,12 +9,7 @@ namespace VideoRentalOnlineStore.app;
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
-            builder.Services.AddDbContext<TodoDbContext>(options =>
-            {
-            options.UseSqlServer(builder.Configuration.GetConnectionString("VROSConnString"));
-            });
-
-        var app = builder.Build();
+            var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -39,4 +33,3 @@ namespace VideoRentalOnlineStore.app;
             app.Run();
         }
     }
-}

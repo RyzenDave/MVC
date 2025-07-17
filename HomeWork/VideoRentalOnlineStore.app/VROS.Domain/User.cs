@@ -15,5 +15,6 @@ namespace VROS.Domain
         public DateTime CreatedOn { get; set; }
         public bool IsSubscriptionExpired { get; set; }
         public SubscriptionType SubscriptionType { get; set; }
+        public UserRoles Roles { get; set; }
     }
 }

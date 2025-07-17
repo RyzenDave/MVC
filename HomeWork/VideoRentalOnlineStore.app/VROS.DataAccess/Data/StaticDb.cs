@@ -36,7 +36,8 @@ namespace VROS.DataAccess.Data
                     CardNumber = "1234567890",
                     CreatedOn = DateTime.Today.AddYears(-2),
                     IsSubscriptionExpired = false,
-                    SubscriptionType = SubscriptionType.Monthly
+                    SubscriptionType = SubscriptionType.Monthly,
+                    Roles = UserRoles.Admin
                 },
                 new User
                 {
@@ -46,7 +47,8 @@ namespace VROS.DataAccess.Data
                     CardNumber = "2345678901",
                     CreatedOn = DateTime.Today.AddYears(-1),
                     IsSubscriptionExpired = false,
-                    SubscriptionType = SubscriptionType.Yearly
+                    SubscriptionType = SubscriptionType.Yearly,
+                    Roles = UserRoles.User
                 },
                 new User
                 {
@@ -56,7 +58,8 @@ namespace VROS.DataAccess.Data
                     CardNumber = "3456789012",
                     CreatedOn = DateTime.Today.AddMonths(-6),
                     IsSubscriptionExpired = true,
-                    SubscriptionType = SubscriptionType.Free
+                    SubscriptionType = SubscriptionType.Free,
+                    Roles = UserRoles.User
                 },
                 new User
                 {
@@ -66,7 +69,8 @@ namespace VROS.DataAccess.Data
                     CardNumber = "4567890123",
                     CreatedOn = DateTime.Today.AddYears(-3),
                     IsSubscriptionExpired = false,
-                    SubscriptionType = SubscriptionType.Lifetime
+                    SubscriptionType = SubscriptionType.Lifetime,
+                    Roles = UserRoles.User
                 },
                 new User
                 {
@@ -76,7 +80,8 @@ namespace VROS.DataAccess.Data
                     CardNumber = "5678901234",
                     CreatedOn = DateTime.Today.AddMonths(-2),
                     IsSubscriptionExpired = true,
-                    SubscriptionType = SubscriptionType.Monthly
+                    SubscriptionType = SubscriptionType.Monthly,
+                    Roles = UserRoles.User
                 }
             };
         }
