@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using VROS.Domain;
 using VROS.Domain.Enums;
 
-namespace VROS.DataAccess.Data
+namespace VROS.DataAccess
 {
     public static class StaticDb
     {

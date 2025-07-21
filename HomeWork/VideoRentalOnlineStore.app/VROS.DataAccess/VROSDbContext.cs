@@ -5,15 +5,12 @@ using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
-using VROS.DataAccess.Data;
 using VROS.Domain;
 
 namespace VROS.DataAccess
 {
-    public class VROSDbContext : DbContext
+    public class VROSDbContext(DbContextOptions options) : DbContext(options)
     {
-        public VROSDbContext(DbContextOptions options) : base(options) { }
-
         public DbSet<Cast> Cast { get; set; }
         public DbSet<Movie> Movies { get; set; }
         public DbSet<Rental> Rentals { get; set; }
@@ -21,11 +18,8 @@ namespace VROS.DataAccess
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
-
             modelBuilder.Entity<Cast>()
-                .HasData(StaticDb.Cast);
+             .HasData(StaticDb.Cast);
 
             modelBuilder.Entity<Movie>()
                 .HasData(StaticDb.Movies);
@@ -35,6 +29,9 @@ namespace VROS.DataAccess
 
             modelBuilder.Entity<User>()
                 .HasData(StaticDb.Users);
+
+
+            base.OnModelCreating(modelBuilder);
 
         }
     }

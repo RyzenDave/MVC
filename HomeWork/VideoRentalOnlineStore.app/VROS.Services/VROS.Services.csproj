@@ -9,6 +9,7 @@
   <ItemGroup>
     <ProjectReference Include="..\VROS.DataAccess\VROS.DataAccess.csproj" />
     <ProjectReference Include="..\VROS.Domain\VROS.Domain.csproj" />
+    <ProjectReference Include="..\VROS.Mapper\VROS.Mapper.csproj" />
   </ItemGroup>
 
   <ItemGroup>

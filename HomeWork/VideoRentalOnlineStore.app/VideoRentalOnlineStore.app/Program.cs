@@ -1,6 +1,9 @@
-     namespace VideoRentalOnlineStore.app;
-    
-    public class Program
+using Microsoft.EntityFrameworkCore;
+using VROS.DataAccess;
+
+namespace VideoRentalOnlineStore.app;
+
+public class Program
     {
         public static void Main(string[] args)
         {
@@ -8,9 +11,15 @@
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+        #region DBregistration
+        string connectionString = builder.Configuration.GetConnectionString("DAVIDNEWLAPTOP\\SQLEXPRESS");
 
-            var app = builder.Build();
+        builder.Services.AddDbContext<VROSDbContext>(options => options.UseSqlServer(connectionString));
+        #endregion
 
+
+        var app = builder.Build();
+        
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
             {
