@@ -12,7 +12,7 @@ using VROS.DataAccess;
 namespace VROS.DataAccess.Migrations
 {
     [DbContext(typeof(VROSDbContext))]
-    [Migration("20250721193918_MovieDb")]
+    [Migration("20250721093458_MovieDb")]
     partial class MovieDb
     {
         /// <inheritdoc />

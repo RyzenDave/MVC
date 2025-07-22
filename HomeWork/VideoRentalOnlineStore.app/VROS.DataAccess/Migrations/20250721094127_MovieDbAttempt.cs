@@ -5,7 +5,7 @@
 namespace VROS.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class update : Migration
+    public partial class MovieDbAttempt : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

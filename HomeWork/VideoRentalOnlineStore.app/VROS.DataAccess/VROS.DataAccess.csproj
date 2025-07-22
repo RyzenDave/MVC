@@ -7,15 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="EFimplementations\**" />
-    <Compile Remove="Implementations\**" />
-    <EmbeddedResource Remove="EFimplementations\**" />
-    <EmbeddedResource Remove="Implementations\**" />
-    <None Remove="EFimplementations\**" />
-    <None Remove="Implementations\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.18" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.18">
@@ -29,7 +20,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="EFRepository\" />
+    <Folder Include="Implementations\" />
+    <Folder Include="EFimplementations\" />
   </ItemGroup>
 
 </Project>

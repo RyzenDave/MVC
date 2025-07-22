@@ -15,8 +15,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VROS.Dto", "VROS.Dto\VROS.D
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VROS.Mapper", "VROS.Mapper\VROS.Mapper.csproj", "{3F46A171-801A-417A-BB39-A2E1AF5D4B1F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VROS.VM", "VROS.VM\VROS.VM.csproj", "{34BB9DC0-36A9-4B8D-9ECD-E4B62D793540}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,10 +45,6 @@ Global
 		{3F46A171-801A-417A-BB39-A2E1AF5D4B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F46A171-801A-417A-BB39-A2E1AF5D4B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F46A171-801A-417A-BB39-A2E1AF5D4B1F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{34BB9DC0-36A9-4B8D-9ECD-E4B62D793540}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{34BB9DC0-36A9-4B8D-9ECD-E4B62D793540}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{34BB9DC0-36A9-4B8D-9ECD-E4B62D793540}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{34BB9DC0-36A9-4B8D-9ECD-E4B62D793540}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
