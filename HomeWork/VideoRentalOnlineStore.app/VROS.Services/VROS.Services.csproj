@@ -7,13 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VROS.DataAccess\VROS.DataAccess.csproj" />
-    <ProjectReference Include="..\VROS.Domain\VROS.Domain.csproj" />
-    <ProjectReference Include="..\VROS.Mapper\VROS.Mapper.csproj" />
+    <Compile Remove="Interfaces\**" />
+    <EmbeddedResource Remove="Interfaces\**" />
+    <None Remove="Interfaces\**" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\" />
+    <ProjectReference Include="..\VROS.DataAccess\VROS.DataAccess.csproj" />
+    <ProjectReference Include="..\VROS.Domain\VROS.Domain.csproj" />
+    <ProjectReference Include="..\VROS.Mapper\VROS.Mapper.csproj" />
   </ItemGroup>
 
 </Project>

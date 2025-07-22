@@ -12,8 +12,8 @@ using VROS.DataAccess;
 namespace VROS.DataAccess.Migrations
 {
     [DbContext(typeof(VROSDbContext))]
-    [Migration("20250721094127_MovieDbAttempt")]
-    partial class MovieDbAttempt
+    [Migration("20250721194137_update")]
+    partial class update
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
