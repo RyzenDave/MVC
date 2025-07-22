@@ -12,7 +12,7 @@ public class Program
             // Add services to the container.
             builder.Services.AddControllersWithViews();
         #region DBregistration
-        string connectionString = builder.Configuration.GetConnectionString("DAVIDNEWLAPTOP\\SQLEXPRESS");
+        string connectionString = builder.Configuration.GetConnectionString("VROSConnString");
 
         builder.Services.AddDbContext<VROSDbContext>(options => options.UseSqlServer(connectionString));
         #endregion

@@ -7,11 +7,18 @@ using VROS.Domain;
 
 namespace VROS.DataAccess.Interfaces
 {
-public interface IUserRentalRepository
-  {
-    Task<IEnumerable<Rental>> GetActiveRentalsForUserAsync(int userId);
-    Task<Rental> GetRentalDetailsAsync(int rentalId);
-    Task RentMovieAsync(int userId, int movieId);
-    Task ReturnMovieAsync(int rentalId);
-  }
+    public interface IUserRentalRepository
+    {
+        // Returns all active rentals for a given user (where ReturnedOn is null or in the future)
+        Task<IEnumerable<Rental>> GetActiveRentalsForUserAsync(int userId);
+
+        // Returns details for a specific rental by its ID
+        Task<Rental> GetRentalDetailsAsync(int rentalId);
+
+        // Creates a new rental for a user and a movie
+        Task RentMovieAsync(int userId, int movieId);
+
+        // Marks a rental as returned (sets ReturnedOn to now)
+        Task ReturnMovieAsync(int rentalId);
+    }
 }

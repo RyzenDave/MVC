@@ -165,9 +165,7 @@ namespace VROS.DataAccess
                 }
             };
         }
-
-    
-            
+          
         private static void LoadRentals()
         {
             Rentals = new List<Rental>
