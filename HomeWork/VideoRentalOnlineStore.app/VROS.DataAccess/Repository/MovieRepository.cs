@@ -15,7 +15,7 @@ namespace VROS.DataAccess.Repository
             throw new NotImplementedException();
         }
 
-        public Task DeleteAsync(Movie movie)
+        public Task DeleteAsync(int id)
         {
             throw new NotImplementedException();
         }

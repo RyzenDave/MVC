@@ -28,8 +28,4 @@
     <ProjectReference Include="..\VROS.Domain\VROS.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="EFRepository\" />
-  </ItemGroup>
-
 </Project>
