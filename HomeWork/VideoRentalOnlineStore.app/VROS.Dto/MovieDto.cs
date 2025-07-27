@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VROS.Dto
 {
-    public class GenreDto
+    public class MovieDto
     {
 
     }

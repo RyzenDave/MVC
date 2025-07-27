@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace VROS.Mapper
+namespace VROS.VM
 {
-    internal class MapperExtensions
+    internal class Registration
     {
     }
 }

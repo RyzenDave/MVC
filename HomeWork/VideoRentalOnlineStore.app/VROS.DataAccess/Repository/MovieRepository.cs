@@ -8,7 +8,7 @@ using VROS.Domain;
 
 namespace VROS.DataAccess.Repository
 {
-    internal class MovieRepository : IMovieRepository
+    public class MovieRepository : IMovieRepository
     {
         private readonly List<Movie> _movies = new();
 

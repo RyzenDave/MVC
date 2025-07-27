@@ -9,7 +9,7 @@ using VROS.Domain.Enums;
 
 namespace VROS.DataAccess.Repository
 {
-    internal class UserRepository : IUserRepository
+    public class UserRepository : IUserRepository
     {
         public Task AddAsync(User entity)
         {

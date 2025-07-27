@@ -1,44 +1,51 @@
 using Microsoft.EntityFrameworkCore;
 using VROS.DataAccess;
+using VROS.DataAccess.Interfaces;
+using VROS.DataAccess.Repository;
+using VROS.Services;
+using VROS.Services.Interfaces;
 
-namespace VideoRentalOnlineStore.app;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
-    {
-        public static void Main(string[] args)
-        {
-            var builder = WebApplication.CreateBuilder(args);
+// Add services to the container
+builder.Services.AddControllersWithViews();
 
-            // Add services to the container.
-            builder.Services.AddControllersWithViews();
-        #region DBregistration
-        string connectionString = builder.Configuration.GetConnectionString("VROSConnString");
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 
-        builder.Services.AddDbContext<VROSDbContext>(options => options.UseSqlServer(connectionString));
-        #endregion
+// Database context registration
+string connectionString = builder.Configuration.GetConnectionString("VROSConnString");
+builder.Services.AddDbContext<VROSDbContext>(options =>
+    options.UseSqlServer(connectionString));
 
+// Repository and service registration
+builder.Services.AddSingleton<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 
-        var app = builder.Build();
-        
-            // Configure the HTTP request pipeline.
-            if (!app.Environment.IsDevelopment())
-            {
-                app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
-                app.UseHsts();
-            }
+var app = builder.Build();
 
-            app.UseHttpsRedirection();
-            app.UseStaticFiles();
+// Configure the HTTP request pipeline
+if (!app.Environment.IsDevelopment())
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts(); // For more information see https://aka.ms/aspnetcore-hsts
+}
 
-            app.UseRouting();
+app.UseHttpsRedirection();
+app.UseStaticFiles();
 
-            app.UseAuthorization();
+app.UseRouting();
 
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+app.UseSession(); // Must come after UseRouting and before UseAuthorization
 
-            app.Run();
-        }
-    }
+app.UseAuthorization();
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Account}/{action=Login}/{id?}");
+
+app.Run();

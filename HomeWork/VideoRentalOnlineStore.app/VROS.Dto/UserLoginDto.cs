@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace VROS.Dto
 {
-    public class GenreDto
+    public class UserLoginDto
     {
-
+        public string Identifier { get; set; } // CardNumber or Email
+        public string Password { get; set; }
     }
 }

@@ -14,14 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\VROS.DataAccess\VROS.DataAccess.csproj" />
-    <ProjectReference Include="..\VROS.Dto\VROS.Dto.csproj" />
-    <ProjectReference Include="..\VROS.Mapper\VROS.Mapper.csproj" />
     <ProjectReference Include="..\VROS.Services\VROS.Services.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
