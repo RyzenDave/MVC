@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VROS.DataAccess.EFRepository
 {
-    internal class EFMovieRepository
+    public class EFMovieRepository
     {
     }
 }

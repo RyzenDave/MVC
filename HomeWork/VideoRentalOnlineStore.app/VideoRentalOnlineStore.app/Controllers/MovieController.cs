@@ -1,7 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System.Threading.Tasks;
+using VROS.DataAccess;
 using VROS.DataAccess.Interfaces;
-using VROS.DataAccess.Repository;
 using VROS.Domain;
+using VROS.Domain.Enums;
+using VROS.Mapper;
 using VROS.VM;
 
 namespace VideoRentalOnlineStore.app.Controllers
@@ -9,91 +12,104 @@ namespace VideoRentalOnlineStore.app.Controllers
     public class MovieController : Controller
     {
         private readonly IMovieRepository _movieRepo;
-        private readonly IRentalRepository _rentalRepo;
         private readonly IUserRepository _userRepo;
 
-        public MovieController(IMovieRepository movieRepo, IRentalRepository rentalRepo, IUserRepository userRepo)
+        public MovieController(IMovieRepository movieRepo, IUserRepository userRepo)
         {
             _movieRepo = movieRepo;
-            _rentalRepo = rentalRepo;
             _userRepo = userRepo;
         }
 
-        // GET: /Movie
-        public async Task<IActionResult> Index()
+        // Helper: Check if current user is Admin
+        private async Task<bool> IsAdminAsync()
         {
             var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-                return RedirectToAction("Login", "Account");
-
-            var movies = await _movieRepo.GetAllMoviesAsync();
-            var vm = movies.Select(m => new MovieListVM
-            {
-                Id = m.Id,
-                Title = m.Title,
-                Genre = m.Genre,
-                Quantity = m.Quantity
-            });
-
-            return View(vm);
+            if (!userId.HasValue) return false;
+            var user = await _userRepo.GetByIdAsync(userId.Value);
+            return user?.Roles == UserRoles.Admin;
         }
 
-        // GET: /Movie/Details/5
-        public async Task<IActionResult> Details(int id)
+        // GET: /Movie - Available to ALL logged-in users
+
+
+        // GET: /Movie/Details/5 - Available to ALL
+        MovieDetailVM.ToDetailVM(Movie, movie)
+
+        //  Admin Only: Show Create Form
+        public async Task<IActionResult> Create()
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-                return RedirectToAction("Login", "Account");
-
-            var movie = await _movieRepo.GetMovieByIdAsync(id);
-            if (movie == null)
-                return NotFound();
-
-            var vm = new MovieDetailVM
+            if (!await IsAdminAsync())
             {
-                Id = movie.Id,
-                Title = movie.Title,
-                Genre = movie.Genre,
-                Language = movie.Language,
-                ReleaseDate = movie.ReleaseDate,
-                Length = movie.Length,
-                AgeRestriction = movie.AgeRestriction,
-                Quantity = movie.Quantity
-            };
-
-            return View(vm);
+                TempData["Error"] = "Access denied. Admins only.";
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
-        // POST: /Movie/Rent/5
+        //  Admin Only: Handle Create
         [HttpPost]
-        public async Task<IActionResult> Rent(int id)
+        public async Task<IActionResult> Create(Movie movie)
         {
-            var userId = HttpContext.Session.GetInt32("UserId");
-            if (!userId.HasValue)
-                return RedirectToAction("Login", "Account");
+            if (!await IsAdminAsync())
+                return Forbid();
 
-            var movie = await _movieRepo.GetMovieByIdAsync(id);
-            if (movie == null || movie.Quantity <= 0)
+            if (ModelState.IsValid)
             {
-                TempData["Error"] = "Movie not available for rent.";
-                return RedirectToAction("Details", new { id });
+                movie.Id = StaticDb.Movies.Count + 1;
+                StaticDb.Movies.Add(movie);
+                TempData["Success"] = "Movie added successfully.";
+                return RedirectToAction("Index");
+            }
+            return View(movie);
+        }
+
+        // Admin Only: Show Edit Form
+        public async Task<IActionResult> Edit(int id)
+        {
+            if (!await IsAdminAsync())
+            {
+                TempData["Error"] = "Access denied. Admins only.";
+                return RedirectToAction("Index");
             }
 
-            var rental = new Rental
+            // Replace this line in Edit(int id):
+            // var movie = await _movieRepo.GetAllAsync(id);
+
+            // With this line:
+            var movie = await _movieRepo.GetByIdAsync(id);
+            if (movie == null) return NotFound();
+            return View(movie);
+        }
+
+        //  Admin Only: Handle Edit
+        [HttpPost]
+        public async Task<IActionResult> Edit(int id, Movie movie)
+        {
+            if (!await IsAdminAsync()) return Forbid();
+
+            var existing = StaticDb.Movies.FirstOrDefault(m => m.Id == id);
+            if (existing == null) return NotFound();
+
+            // ✅ Use mapper to copy properties
+            MovieMapper.UpdateMovieFromEdit(existing, movie);
+
+            TempData["Success"] = "Movie updated.";
+            return RedirectToAction("Index");
+        }
+        //  Admin Only: Delete
+        [HttpPost]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (!await IsAdminAsync()) return Forbid();
+
+            var movie = StaticDb.Movies.FirstOrDefault(m => m.Id == id);
+            if (movie != null)
             {
-                UserId = userId.Value,
-                MovieId = id,
-                RentedOn = DateTime.Now,
-                ReturnedOn = null
-            };
+                StaticDb.Movies.Remove(movie);
+                TempData["Success"] = "Movie deleted.";
+            }
 
-            await _rentalRepo.AddRentalAsync(rental);
-
-            movie.Quantity--;
-            await _movieRepo.UpdateMovieAsync(movie);
-
-            TempData["Success"] = $"You rented '{movie.Title}'.";
-            return RedirectToAction("Details", new { id });
+            return RedirectToAction("Index");
         }
     }
 }
