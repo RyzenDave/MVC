@@ -28,12 +28,22 @@ namespace VideoRentalOnlineStore.app.Controllers
             var user = await _userRepo.GetByIdAsync(userId.Value);
             return user?.Roles == UserRoles.Admin;
         }
-
         // GET: /Movie - Available to ALL logged-in users
-
+        public async Task<IActionResult> Index()
+        {
+            var movies = await _movieRepo.GetAllAsync();
+            return View(movies);
+        }
 
         // GET: /Movie/Details/5 - Available to ALL
-        MovieDetailVM.ToDetailVM(Movie, movie)
+        public async Task<IActionResult> Details(int id)
+        {
+            var movie = await _movieRepo.GetByIdAsync(id);
+            if (movie == null) return NotFound();
+
+            var detailVM = MovieDetailVM.ToDetailVM(movie);
+            return View(detailVM);
+        }
 
         //  Admin Only: Show Create Form
         public async Task<IActionResult> Create()

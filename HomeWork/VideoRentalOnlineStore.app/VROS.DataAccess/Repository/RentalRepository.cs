@@ -8,7 +8,7 @@ using VROS.Domain;
 
 namespace VROS.DataAccess.Repository
 {
-    public class RentalRepository : IUserRentalRepository
+    public class RentalRepository : IRentalRepository
     {
         public Task AddAsync(Rental rental)
         {

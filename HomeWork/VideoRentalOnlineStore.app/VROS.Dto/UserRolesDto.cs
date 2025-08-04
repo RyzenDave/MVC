@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace VROS.Dto
 {
-    internal class UserRolesDto
+    public class UserRolesDto
     {
+        public string Role {  get; set; }
     }
 }

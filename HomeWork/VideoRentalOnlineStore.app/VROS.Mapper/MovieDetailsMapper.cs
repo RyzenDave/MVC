@@ -10,18 +10,24 @@ namespace VROS.Mapper
 {
     public static class MovieDetailsMapper
     {
-        public static MovieDetailVM ToDetailVM(Movie movie)
+        public static MovieDetailVM ToDetailVM(this Movie movie)
+        {
+            return movie.ToDetailVM(canRent: false);
+        }
+
+        public static MovieDetailVM ToDetailVM(this Movie movie, bool canRent)
         {
             return new MovieDetailVM
             {
                 Id = movie.Id,
                 Title = movie.Title,
-                Genre = movie.Genre.ToString(), // Convert enum to string
-                Language = movie.Language.ToString(), // Convert enum to string
+                Genre = movie.Genre.ToString(),
+                Language = movie.Language.ToString(),
                 ReleaseDate = movie.ReleaseDate,
                 Length = (int)movie.Length.TotalMinutes,
                 AgeRestriction = movie.AgeRestriction.ToString(),
-                Quantity = movie.Quantity
+                Quantity = movie.Quantity,
+                CanRent = canRent
             };
         }
     }

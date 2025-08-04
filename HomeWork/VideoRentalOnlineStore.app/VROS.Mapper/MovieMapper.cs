@@ -10,7 +10,7 @@ namespace VROS.Mapper
 {
     public static class MovieMapper
     {
-        public static MovieListVM ToListVM(Movie movie)
+        public static MovieListVM ToListVM(this Movie movie)
         {
             return new MovieListVM
             {
@@ -20,7 +20,7 @@ namespace VROS.Mapper
                 Quantity = movie.Quantity
             };
         }
-        public static void UpdateMovieFromEdit(Movie existing, Movie movie)
+        public static void UpdateMovieFromEdit(this Movie existing, Movie movie)
         {
             existing.Title = movie.Title;
             existing.Genre = movie.Genre;

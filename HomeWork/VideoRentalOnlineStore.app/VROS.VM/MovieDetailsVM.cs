@@ -16,7 +16,6 @@ namespace VROS.VM
         public int Length { get; set; }
         public string AgeRestriction { get; set; }
         public int Quantity { get; set; }
-
         public bool CanRent => Quantity > 0;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using System;
+using VROS.DataAccess.Interfaces;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using VROS.Domain;
 
 namespace VROS.DataAccess.Interfaces
 {
-    public interface IUserRentalRepository : IRepository<Rental>
+    public interface IRentalRepository : IRepository<Rental>
     {
         // Returns all active rentals for a given user (where ReturnedOn is null or in the future)
         Task<IEnumerable<Rental>> GetActiveRentalsForUserAsync(int userId);
